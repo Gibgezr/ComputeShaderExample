@@ -1,1 +1,0 @@
-C:\Projects\CoolStuff\Compute Shaders\x64\Debug\OpenGL Context.exe

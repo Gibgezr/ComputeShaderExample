@@ -1,4 +1,0 @@
-﻿  main.cpp
-C:\Projects\CoolStuff\Compute Shaders\main.cpp(286,49): warning C4244: 'argument': conversion from 'double' to 'GLuint', possible loss of data
-C:\Projects\CoolStuff\Compute Shaders\main.cpp(286,25): warning C4244: 'argument': conversion from 'double' to 'GLuint', possible loss of data
-  OpenGL Context.vcxproj -> C:\Projects\CoolStuff\Compute Shaders\x64\Debug\OpenGL Context.exe
