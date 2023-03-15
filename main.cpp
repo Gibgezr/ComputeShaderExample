@@ -85,9 +85,9 @@ void main()
 	ivec2 dims = imageSize(screen);
 	float x = -(float(pixel_coords.x * 2 - dims.x) / dims.x); // transforms to [-1.0, 1.0]
 	float y = -(float(pixel_coords.y * 2 - dims.y) / dims.y); // transforms to [-1.0, 1.0]
-	pixel.r =  timer/6.28318530718;//(sin(timer*x) + 1)/2;
-	pixel.g =  0.5;//(cos(timer*y) + 1)/2;
-	pixel.b =  0.5;//range(0, 6.28318530718, timer);
+	pixel.r =  (sin(timer*x/y + x*x) + 1)/2;
+	pixel.g =  (cos(timer*y/x - y*y) + 1)/2;
+	pixel.b =  min(1.0, max(0, tan(x*y/(x+y)/timer))) + min(1.0, max(0, tan(y*x/(x-y)/timer))); 
 	pixel.a = 1.0;
 
 	imageStore(screen, pixel_coords, pixel);
@@ -266,8 +266,8 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		currentTime = std::chrono::high_resolution_clock::now();
-		elapsed_time = std::chrono::duration_cast<std::chrono::seconds>
-			(currentTime - previousTime).count();	
+		
+		elapsed_time = std::chrono::duration_cast<std::chrono::duration<float>> (currentTime - previousTime).count();
 		previousTime = currentTime;
 		if (elapsed_time > 0.15f) elapsed_time = 0.15f;
 		timer += elapsed_time;
