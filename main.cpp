@@ -83,8 +83,8 @@ void main()
 	ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
 	
 	ivec2 dims = imageSize(screen);
-	float x = -(float(pixel_coords.x * 2 - dims.x) / dims.x); // transforms to [-1.0, 1.0]
-	float y = -(float(pixel_coords.y * 2 - dims.y) / dims.y); // transforms to [-1.0, 1.0]
+	float x = -(float(pixel_coords.x * 2 - dims.x) / dims.x) * 10.0; // transforms to [-10.0, 10.0]
+	float y = -(float(pixel_coords.y * 2 - dims.y) / dims.y) * 10.0; // transforms to [-10.0, 10.0]
 	pixel.r =  (sin(timer*x/y + x*x) + 1)/2;
 	pixel.g =  (cos(timer*y/x - y*y) + 1)/2;
 	pixel.b =  min(1.0, max(0, tan(x*y/(x+y)/timer))) + min(1.0, max(0, tan(y*x/(x-y)/timer))); 
