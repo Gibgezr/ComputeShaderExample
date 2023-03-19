@@ -1,5 +1,5 @@
 //#define GL_GLEXT_PROTOTYPES
-
+#define _USE_MATH_DEFINES
 #include<iostream>
 
 #include"glad/glad.h"
@@ -85,8 +85,8 @@ void main()
 	ivec2 dims = imageSize(screen);
 	float x = -(float(pixel_coords.x * 2 - dims.x) / dims.x) * 10.0; // transforms to [-10.0, 10.0]
 	float y = -(float(pixel_coords.y * 2 - dims.y) / dims.y) * 10.0; // transforms to [-10.0, 10.0]
-	pixel.r =  (sin(timer*x/y + x*x) + 1)/2;
-	pixel.g =  (cos(timer*y/x - y*y) + 1)/2;
+	pixel.r =  (sin(timer*x/y + cos(x*x)) + 1)/2;
+	pixel.g =  (cos(timer*y/x - sin(y*y)) + 1)/2;
 	pixel.b =  min(1.0, max(0, tan(x*y/(x+y)/timer))) + min(1.0, max(0, tan(y*x/(x-y)/timer))); 
 	pixel.a = 1.0;
 
@@ -271,7 +271,7 @@ int main()
 		previousTime = currentTime;
 		if (elapsed_time > 0.15f) elapsed_time = 0.15f;
 		timer += elapsed_time;
-		if (timer > 6.28318530718f) timer -= 6.28318530718f;
+		if (timer > M_PI*10.f) timer -= M_PI * 10.f;
 
 		glUseProgram(computeProgram);
 		glCheckError();
